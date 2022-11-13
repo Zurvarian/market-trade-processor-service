@@ -1,10 +1,10 @@
-package org.zurvarian.markettradeprocessorservice;
+package org.zurvarian.markets;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MarketTradeProcessorServiceApplicationTests {
+class ApplicationTest {
 
 	@Test
 	void contextLoads() {

@@ -1,13 +1,13 @@
-package org.zurvarian.markettradeprocessorservice;
+package org.zurvarian.markets;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MarketTradeProcessorServiceApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketTradeProcessorServiceApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
