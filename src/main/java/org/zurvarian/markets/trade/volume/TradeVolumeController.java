@@ -3,6 +3,7 @@ package org.zurvarian.markets.trade.volume;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +29,11 @@ public class TradeVolumeController {
 
     private final TradeVolumeService tradeVolumeService;
 
+    @CrossOrigin(allowedHeaders = "authorization", allowCredentials = "true", origins = "http://localhost:3000")
     @GetMapping(produces = TEXT_EVENT_STREAM_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     Flux<List<TradeVolume>> findAllVolumes(@RequestParam("dateTimeRangeInHours") @Min(1) Integer dateTimeRangeInHours) {
-        return interval(ZERO, ofSeconds(5))
+        return interval(ZERO, ofSeconds(1))
                 .publishOn(boundedElastic())
                 .map(
                         __ -> tradeVolumeService.findAllVolumes(dateTimeRangeInHours).toStream().collect(toList())

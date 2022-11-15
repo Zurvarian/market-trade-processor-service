@@ -21,6 +21,7 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(
             ServerHttpSecurity http) {
         http.csrf().disable()
+                .cors().and()
                 .authorizeExchange()
                 .pathMatchers("/**").permitAll()
                 .and()
@@ -31,7 +32,6 @@ public class WebSecurityConfig {
     @Bean
     public MapReactiveUserDetailsService userDetailsService() {
         String password = passwordEncoder().encode("test");
-        log.info("Admin password is {}", password);
 
         UserDetails user = User
                 .withUsername("admin")
